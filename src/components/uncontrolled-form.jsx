@@ -7,12 +7,10 @@ export const UncontrolledForm = () => {
   const SubmitForm = (e) => {
     console.log(nameInputRef.current.value);
     console.log(ageInputRef.current.value);
-
     e.preventDefault();
   };
 
   return (
-  
   <form onSubmit={SubmitForm}>
       <input name="name" type="text" placeholder="Name" ref={nameInputRef} />
       <input name="age" type="number" placeholder="Age" ref={ageInputRef} />

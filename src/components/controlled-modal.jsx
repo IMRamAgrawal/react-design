@@ -18,16 +18,13 @@ const ModalContent = styled.div`
   width: 50%;
 `;
 
-export const Modal = ({ children }) => {
-  const [show, setShow] = useState(false);
-
+export const ControlledModal = ({ shouldShow, close, children }) => {
   return (
     <>
-      <button onClick={() => setShow(true)}>Show Modal</button>
-      {show && (
-        <ModalBackground onClick={() => setShow(false)}>
+      {shouldShow && (
+        <ModalBackground onClick={close}>
           <ModalContent onClick={(e) => e.stopPropagation()}>
-            <button onClick={() => setShow(false)}>Hide Modal</button>
+            <button onClick={close}>Hide Modal</button>
             {children}
           </ModalContent>
         </ModalBackground>
