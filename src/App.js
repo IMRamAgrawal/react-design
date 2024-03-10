@@ -1,13 +1,11 @@
-import { checkProps } from "./components/check-props";
-import { includeUser } from "./components/include-user";
+import { BookInfo } from "./components/book-info";
 import { UserInfo } from "./components/user-info";
-
-const UserInfoWithUser = includeUser(UserInfo, "2");
 
 function App() {
   return (
     <>
-      <UserInfoWithUser />
+      <UserInfo userId={"1"}/>
+      <BookInfo bookId={"2"}/>
     </>
   );
 }
