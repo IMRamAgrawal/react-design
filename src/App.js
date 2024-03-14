@@ -1,23 +1,38 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import "./App.css";
-import Counter from "./counter";
 
 function App() {
-  const [changeShirts, setChangeShirts] = useState(false);
+  const [show, setShow] = useState(false);
+  const [top, setTop] = useState(0);
+  const buttonRef = useRef(null);
+
+  useEffect(() => {
+    if (buttonRef.current === null || !show) return setTop(0);
+    const { bottom } = buttonRef.current.getBoundingClientRect();
+    setTop(bottom + 30);
+  }, [show]);
+
+  const now = performance.now();
+  while (now > performance.now() - 100) {
+    //Do something
+  }
+
   return (
-    <div>
-      {changeShirts ? (
-        <>
-          <span>Shirts counts: </span> <Counter key="shirts"/>{" "}
-        </>
-      ) : (
-        <>
-          <span>Shoes counts: </span> <Counter key="shoess"/>{" "}
-        </>
+    <>
+      <button ref={buttonRef} onClick={() => setShow((s) => !s)}>
+        Show
+      </button>
+      {show && (
+        <div
+          className="tooltip"
+          style={{
+            top: `${top}px`,
+          }}
+        >
+          Some text ...
+        </div>
       )}
-      <br />
-      <button onClick={() => setChangeShirts((s) => !s)}>Switch</button>
-    </div>
+    </>
   );
 }
 
