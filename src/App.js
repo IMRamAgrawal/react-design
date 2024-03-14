@@ -1,33 +1,62 @@
-import Card from "./components/card";
-import ParentComponent from "./components/parent";
-import mitt from "mitt";
+// import { useState } from "react";
+// import "./App.css";
 
-export const emitter = mitt();
+// function App() {
+//   const [show, setShow] = useState(false);
+
+//   return (
+//     <div>
+//       <h1>Other Content</h1>
+//       <button onClick={() => setShow(true)}>Show Message</button>
+//       <Alert show={show} onClose={() => setShow(false)}>
+//         A sample message to show.
+//         <br />
+//         Click it to close.
+//       </Alert>
+//     </div>
+//   );
+// }
+
+// const Alert = ({ children, onClose, show }) => {
+//   if (!show) return;
+
+//   return (
+//     <div className="alert" onClick={onClose}>
+//       {children}
+//     </div>
+//   );
+// };
+
+// export default App;
+import { useState } from "react";
+import { createPortal } from "react-dom";
+import "./App.css";
 
 function App() {
+  const [show, setShow] = useState(false);
+
   return (
-    <>
-    {/* <Card test="Value">
-      <Card.Header>
-        <h1 style={{ margin: "0" }}>Header</h1>
-      </Card.Header>
-      <Card.Body>
-        He hid under the covers hoping that nobody would notice him there. It
-        really didn't make much sense since it would be obvious to anyone who
-        walked into the room there was someone hiding there, but he still held
-        out hope. He heard footsteps coming down the hall and stop in front in
-        front of the bedroom door. He heard the squeak of the door hinges and
-        someone opened the bedroom door. He held his breath waiting for whoever
-        was about to discover him, but they never did.
-      </Card.Body>
-      <Card.Footer>
-        <button>Ok</button>
-        <button>Cancel</button>
-      </Card.Footer>
-    </Card> */}
-    <ParentComponent />
-    </>
-  );
+    <div style={{ position: "absolute", marginTop: "200px" }}>
+      <h1>Other Content</h1>
+      <button onClick={() => setShow(true)}>Show Message</button>
+      <Alert show={show} onClose={() => setShow(false)}>
+        A sample message to show.
+        <br />
+        Click it to close.
+      </Alert>
+    </div>
+    );
 }
+
+const Alert = ({ children, onClose, show }) => {
+  if (!show) return;
+
+  return createPortal(
+    <div className="alert" onClick={onClose}>
+      {children}
+    </div>,
+    document.querySelector("#alert-holder")
+  );
+};
 
 export default App;
