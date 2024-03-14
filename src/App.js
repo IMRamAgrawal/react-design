@@ -1,62 +1,48 @@
-// import { useState } from "react";
+// import { useRef } from "react";
 // import "./App.css";
 
 // function App() {
-//   const [show, setShow] = useState(false);
+//   const inputRef = useRef();
+
+//   function submitHandler(e) {
+//     e.preventDefault();
+
+//     console.log(inputRef.current.value);
+//   }
 
 //   return (
-//     <div>
-//       <h1>Other Content</h1>
-//       <button onClick={() => setShow(true)}>Show Message</button>
-//       <Alert show={show} onClose={() => setShow(false)}>
-//         A sample message to show.
-//         <br />
-//         Click it to close.
-//       </Alert>
-//     </div>
+//     <form onSubmit={submitHandler}>
+//       <input ref={inputRef} className="text-input" />
+//       <button type="submit" className="button">
+//         Submit
+//       </button>
+//     </form>
 //   );
 // }
 
-// const Alert = ({ children, onClose, show }) => {
-//   if (!show) return;
-
-//   return (
-//     <div className="alert" onClick={onClose}>
-//       {children}
-//     </div>
-//   );
-// };
-
 // export default App;
-import { useState } from "react";
-import { createPortal } from "react-dom";
+import { useRef } from "react";
 import "./App.css";
+import { Input } from "./input";
 
 function App() {
-  const [show, setShow] = useState(false);
+  const inputRef = useRef();
+
+  function submitHandler(e) {
+    e.preventDefault();
+
+    console.log(inputRef.current.value);
+  }
 
   return (
-    <div style={{ position: "absolute", marginTop: "200px" }}>
-      <h1>Other Content</h1>
-      <button onClick={() => setShow(true)}>Show Message</button>
-      <Alert show={show} onClose={() => setShow(false)}>
-        A sample message to show.
-        <br />
-        Click it to close.
-      </Alert>
-    </div>
-    );
-}
-
-const Alert = ({ children, onClose, show }) => {
-  if (!show) return;
-
-  return createPortal(
-    <div className="alert" onClick={onClose}>
-      {children}
-    </div>,
-    document.querySelector("#alert-holder")
+    <form onSubmit={submitHandler}>
+       {/* <input ref={inputRef} className="text-input" /> */}
+      <Input ref={inputRef} />
+      <button type="submit" className="button">
+        Submit
+      </button>
+    </form>
   );
-};
+}
 
 export default App;
