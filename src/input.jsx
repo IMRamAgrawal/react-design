@@ -1,40 +1,7 @@
-// import { useState } from "react";
+import { forwardRef } from "react";
 
-// const Form = () => {
-//   const [email, setEmail] = useState("");
-//   return (
-//     <div>
-//       <label htmlFor="email">Email</label>
-//       <input
-//         id="email"
-//         type="email"
-//         value={email}
-//         onChange={(e) => setEmail(e.target.value)}
-//       />
-//     </div>
-//   );
-// };
-
-// export default Form;
-
-import { useId, useState } from "react";
-
-const Form = () => {
-  const [email, setEmail] = useState("");
-  const id = useId();
-  return (
-    <div>
-      <label htmlFor={`${id}-email`}>Email</label>
-      <input
-        id={`${id}-email`}
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <label htmlFor={`${id}-name`}>Name</label>
-      <input id={`${id}-name`} />
-    </div>
-  );
+const CustomInput = (props, ref) => {
+  return <input {...props} ref={ref} className="text-input" />;
 };
 
-export default Form;
+export const Input = forwardRef(CustomInput);
