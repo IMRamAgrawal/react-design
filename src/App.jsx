@@ -5,6 +5,7 @@ import FetchTopQuotes from "./components/top-quotes";
 import UpdateQuotes from "./components/update-quotes";
 import PaginatedQuotes from "./components/paginated-quotes";
 import InfiniteScrollQuotes from "./components/infinite-scroll-quotes";
+import QueryCancellationWithAbortSignal from "./components/query-cancellation";
 
 const queryClient = new QueryClient();
 
@@ -16,7 +17,8 @@ function App() {
         {/* <UpdateQuotes />
         <FetchTopQuotes /> */}
            {/* <PaginatedQuotes /> */}
-              <InfiniteScrollQuotes/>
+              {/* <InfiniteScrollQuotes/> */}
+              <QueryCancellationWithAbortSignal />
       </QueryClientProvider>
     </>
   );
