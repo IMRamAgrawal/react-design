@@ -1,27 +1,25 @@
-import { QueryClient, QueryClientProvider } from "react-query";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import FetchTopQuotes from "./components/top-quotes";
-import UpdateQuotes from "./components/update-quotes";
-import PaginatedQuotes from "./components/paginated-quotes";
-import InfiniteScrollQuotes from "./components/infinite-scroll-quotes";
-import QueryCancellationWithAbortSignal from "./components/query-cancellation";
-
-const queryClient = new QueryClient();
+import { useState } from "react";
+import TasksBoard from "./components/tasks-board";
 
 function App() {
+  // const [person, setPerson] = useState({
+  //   name: "William",
+  // });
+
+  // const onChange = () => {
+  //   // ❌ This won't work
+  //   person.age = 24;
+
+  //   // ✅ This will work
+  //   setPerson({ ...person, age: 24 });
+  // };
+
   return (
     <>
-      <QueryClientProvider client={queryClient}>
-        <ToastContainer />
-        {/* <UpdateQuotes />
-        <FetchTopQuotes /> */}
-           {/* <PaginatedQuotes /> */}
-              {/* <InfiniteScrollQuotes/> */}
-              <QueryCancellationWithAbortSignal />
-      </QueryClientProvider>
+      <TasksBoard />
     </>
   );
 }
 
 export default App;
+
