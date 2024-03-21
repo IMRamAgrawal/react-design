@@ -1,12 +1,24 @@
+import { FormEventHandler, ChangeEventHandler, PropsWithChildren } from "react";
 import "./books.css";
 
-export const Books = ({ children, count, onSubmit, onChange }: any) => {
+type BooksProps = {
+  count: number;
+  onSubmit: FormEventHandler<HTMLFormElement>;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
+};
+
+export const Books = ({
+  children,
+  count,
+  onSubmit,
+  onChange,
+}: PropsWithChildren<BooksProps>) => {
   return (
     <section className="book-list gap-8">
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          onChange(e);
+          onSubmit(e);
         }}
       >
         <label htmlFor="number-of-books-to-load" className="book-form-label">
