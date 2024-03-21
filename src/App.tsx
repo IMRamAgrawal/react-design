@@ -34,7 +34,7 @@ export const fetchBook = async (count: number) => {
 };
 
 function App() {
-  const [book, setBook] = useState<Book | undefined>();
+  const [book, setBook] = useState<Book[]>([]);
 
   useEffect(() => {
     fetchRandomBook().then(setBook);
@@ -44,7 +44,11 @@ function App() {
 
   return (
     <main className="w-full max-w-2xl py-16 mx-auto">
-      <Book title={book.title} author={book.author} />
+ <Books>
+        {book.map((book) => (
+          <Book key={book.id} title={book.title} author={book.author} />
+        ))}
+      </Books>
     </main>
   );
 }
